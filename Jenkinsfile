@@ -25,7 +25,7 @@ pipeline{
                             artifactId: 'build_jar_artifact',
                             classifier: '',
                             file: "target/jb-hello-world-maven-0.2.0.jar",
-                            type: 'war'
+                            type: 'jar'
                         ]
                     ],
                     credentialsId: 'nexus',
