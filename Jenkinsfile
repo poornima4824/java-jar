@@ -29,7 +29,7 @@ pipeline{
                         ]
                     ],
                     credentialsId: 'nexus',
-                    groupId: 'build',
+                    groupId: 'joda-time',
                     nexusUrl: '3.144.132.81:8081',
                     nexusVersion: 'nexus3',
                     protocol: 'http',
