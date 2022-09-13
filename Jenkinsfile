@@ -16,5 +16,27 @@ pipeline{
                sh 'mvn package'
             }
         }
+        stage('Upload Artifacts To Nexus') {
+            steps {
+                script {
+                    nexusArtifactUploader artifacts:
+                    [
+                        [
+                            artifactId: 'build_jar_artifact',
+                            classifier: '',
+                            file: "target/jb-hello-world-maven-0.2.0.jar",
+                            type: 'war'
+                        ]
+                    ],
+                    credentialsId: 'nexus',
+                    groupId: 'build',
+                    nexusUrl: '3.144.132.81:8081',
+                    nexusVersion: 'nexus3',
+                    protocol: 'http',
+                    repository: 'Rollback_mechanism',
+                    version: "${GIT_COMMIT}"
+                }
+            }
+        }
     }
 }
