@@ -22,7 +22,7 @@ pipeline{
                     nexusArtifactUploader artifacts:
                     [
                         [
-                            artifactId: 'build_jar_artifact',
+                            artifactId: 'jb-hello-world-maven',
                             classifier: '',
                             file: "target/jb-hello-world-maven-0.2.0.jar",
                             type: 'jar'
