@@ -16,30 +16,27 @@ pipeline{
                sh 'mvn package'
             }
         }
-        stage('Nexus Upload') {
+        stage('Upload Artifacts To Nexus') {
             steps {
                 script {
-                 def readPom = readMavenPom file: 'pom.xml'
-                 def nexusrepo = readPom.version.endsWith("SNAPSHOT") ? "maven-snapshots" : "maven-releases"
-                 nexusArtifactUploader artifacts: 
-                 [
-                     [
-                         artifactId: "${readPom.artifactId}",
-                         classifier: '', 
-                         file: "target/${readPom.artifactId}-${readPom.version}.jar", 
-                         type: 'jar'
-                     ]
-                ], 
-                         credentialsId: 'nexus', 
-                         groupId: "${readPom.groupId}", 
-                         nexusUrl: '3.144.132.81:8081', 
-                         nexusVersion: 'nexus3', 
-                         protocol: 'http', 
-                         repository: "${nexusrepo}", 
-                         version: "${GIT_COMMIT}"
-
+                    nexusArtifactUploader artifacts:
+                    [
+                        [
+                            artifactId: 'build_artifact',
+                            classifier: '',
+                            file: "/target/jb-hello-world-maven-0.2.0.jar",
+                            type: 'zip'
+                        ]
+                    ],
+                    credentialsId: 'nexus',
+                    groupId: 'build',
+                    nexusUrl: '3.144.132.81:8081',
+                    nexusVersion: 'nexus3',
+                    protocol: 'http',
+                    repository: 'Rollback_mechanism',
+                    version: "${GIT_COMMIT}"
+                }
             }
-         }
-     }
+        }
     }
 }
