@@ -16,12 +16,9 @@ pipeline{
                sh 'mvn package'
             }
         }
-         stage('Nexus Upload')
-     {
-         steps
-         {
-            script
-            {
+        stage('Nexus Upload') {
+            steps {
+                script {
                  def readPom = readMavenPom file: 'pom.xml'
                  def nexusrepo = readPom.version.endsWith("SNAPSHOT") ? "maven-snapshots" : "maven-releases"
                  nexusArtifactUploader artifacts: 
@@ -38,7 +35,7 @@ pipeline{
                          nexusUrl: '3.144.132.81:8081', 
                          nexusVersion: 'nexus3', 
                          protocol: 'http', 
-                         repository: "Rollback_mechanism", 
+                         repository: "${nexusrepo}", 
                          version: "${GIT_COMMIT}"
 
             }
