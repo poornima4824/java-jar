@@ -22,14 +22,14 @@ pipeline{
                     nexusArtifactUploader artifacts:
                     [
                         [
-                            artifactId: 'jb-hello-world-maven',
+                            artifactId: 'build_artifact',
                             classifier: '',
                             file: "target/jb-hello-world-maven-0.2.0.jar",
                             type: 'jar'
                         ]
                     ],
                     credentialsId: 'nexus',
-                    groupId: 'joda-time',
+                    groupId: 'build',
                     nexusUrl: '3.144.132.81:8081',
                     nexusVersion: 'nexus3',
                     protocol: 'http',
