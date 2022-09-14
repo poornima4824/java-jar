@@ -29,8 +29,8 @@ pipeline{
                      [
                          artifactId: "${readPom.artifactId}",
                          classifier: '', 
-                         file: "target/${readPom.artifactId}-${readPom.version}.war", 
-                         type: 'war'
+                         file: "target/${readPom.artifactId}-${readPom.version}.jar", 
+                         type: 'jar'
                      ]
                 ], 
                          credentialsId: 'nexus', 
